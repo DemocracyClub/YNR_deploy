@@ -1,7 +1,7 @@
 # Only set this to True in development environments
 DEBUG = False
 SHOW_BANNER = False
-CAN_EDIT_ELECTIONS: False
+CAN_EDIT_ELECTIONS = False
 
 # Set this to a long random string and keep it secret
 # This is a handy tool:
@@ -38,10 +38,12 @@ INTERNAL_IPS = ['127.0.0.1', 'localhost', ]
 
 # **** Settings that might be useful in production
 
-TWITTER_APP_ONLY_BEARER_TOKEN = {{TWITTER_APP_ONLY_BEARER_TOKEN}}
+TWITTER_APP_ONLY_BEARER_TOKEN = "{{TWITTER_APP_ONLY_BEARER_TOKEN}}"
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 RAVEN_CONFIG = {
     'dsn': '{{RAVEN_DSN}}'
 }
+
+RUNNING_TESTS = False
