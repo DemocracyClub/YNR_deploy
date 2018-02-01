@@ -30,6 +30,7 @@
       name: "For election night, generate the 2017 GE CSV file more frequently"
       minute: "*/5"
       job: "nice -n 19 ionice -c 3 /usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk --election parl.2017-06-08 {{project_root}}/media_root/candidates"
+      disabled: yes
 
 
   - cron:
@@ -41,8 +42,8 @@
   - cron:
       name: "Detect faces"
       minute: "30,04,19"
-      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py moderation_queue_detect_faces_in_queued_images"
-      disabled: yes
+      job: "nice -n 19 ionice -c 3 /usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py moderation_queue_detect_faces_in_queued_images"
+      disabled: no
     when: deploy_env == "production"
 
   - cron:
@@ -79,5 +80,6 @@
   - cron:
       name: "Build static person pages"
       minute: "10"
+      hour: 1 # For non-election times
       job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_cache_api_to_directory {{django_media_root}}/cached-api https://candidates.democracyclub.org.uk/media/cached-api --prune"
     when: deploy_env == "production"
