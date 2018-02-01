@@ -5,7 +5,7 @@ Description={{ project_name }}
 Type=simple
 Environment="PATH={{project_root}}/env/bin:{{ansible_env.PATH}}"
 WorkingDirectory={{project_root}}/code/
-ExecStart={{project_root}}/env/bin/gunicorn mysite.wsgi \
+ExecStart={{project_root}}/env/bin/gunicorn ynr.wsgi \
     --log-file=/tmp/{{app_name}}.log \
     --log-level=debug \
     --workers={{ ansible_processor_cores*2+1 }} \

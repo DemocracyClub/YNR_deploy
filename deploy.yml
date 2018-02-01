@@ -22,7 +22,7 @@
     - name: Upload configuration.
       template:
         src: "webapp_settings/{{ deploy_env }}.py"
-        dest: "{{ project_root }}/code/mysite/settings/local.py"
+        dest: "{{ project_root }}/code/ynr/settings/local.py"
       notify:
         - restart web frontend
       register: application_config
@@ -68,7 +68,7 @@
     - name: Upload banner.
       template:
         src: "webapp_settings/banner/{{ deploy_env }}.html"
-        dest: "{{ project_root }}/code/mysite/templates/banner.html"
+        dest: "{{ project_root }}/code/ynr/templates/banner.html"
       notify:
         - restart web frontend
 
