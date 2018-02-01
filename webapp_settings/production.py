@@ -14,8 +14,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': '{{project_name}}',
-        'USER': '{{project_name}}',
-        'PASSWORD': '',
+        'USER': '{{postgres_username}}',
+        'PASSWORD': '{{postgres_password}}',
+        'HOST': '{{postgres_host}}',
     },
 }
 
@@ -29,11 +30,20 @@ ADMINS = (
 ALLOWED_HOSTS = ['*']
 INTERNAL_IPS = ['127.0.0.1', 'localhost', ]
 
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django.core.cache.backends.dummy.DummyCache",
-#     }
-# }
+CACHES = {
+    'default': {
+        'TIMEOUT': None,  # cache keys never expire; we invalidate them
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+        'KEY_PREFIX': DATABASES['default']['NAME'],
+    },
+    'thumbnails': {
+        'TIMEOUT': 60 * 60 * 24 * 2,  # expire after two days
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+        'KEY_PREFIX': DATABASES['default']['NAME'] + "-thumbnails",
+    },
+}
 
 
 # **** Settings that might be useful in production
