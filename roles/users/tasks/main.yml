@@ -6,3 +6,4 @@
   with_file:
     - files/public_keys/mark-longair.pub
     - files/public_keys/sym-roe.pub
+    - files/public_keys/chris48s.pub
