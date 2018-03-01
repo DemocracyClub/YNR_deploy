@@ -16,3 +16,4 @@ pycrypto==2.6.1
 pyparsing==2.2.0
 PyYAML==3.12
 six==1.10.0
+-e git+https://github.com/confirm/ansibleci.git#egg=ansibleci
