@@ -42,13 +42,6 @@
         virtualenv: "{{ project_root }}/env"
       when: (application_git_repo.changed) or (application_config.changed)
 
-    - name: Generate the files of translated strings for Javascript to use
-      django_manage:
-        command: compilejsi18n
-        app_path: "{{ project_root }}/code"
-        virtualenv: "{{ project_root }}/env"
-      when: (application_git_repo.changed) or (application_config.changed)
-
     - name: Generate Django media.
       django_manage:
         command: collectstatic --noinput
