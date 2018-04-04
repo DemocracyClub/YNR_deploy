@@ -1,0 +1,22 @@
+---
+- name: Create user.
+  user:
+    name: celery
+    home: /opt/celery/
+    state: present
+
+- name: Set up the celery config file
+  template:
+    src: celery.conf
+    dest: /opt/celery/celery.conf
+  when: ansible_distribution_version == "16.04"
+  notify:
+    - restart celery
+
+- name: Install celery systemd init scripts.
+  template:
+    src: celery.service
+    dest: /etc/systemd/system/celery.service
+  when: ansible_distribution_version == "16.04"
+  notify:
+    - reload systemd
