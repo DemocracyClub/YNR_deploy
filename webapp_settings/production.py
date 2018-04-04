@@ -25,6 +25,19 @@ ADMINS = (
     ('YNR Prod Developers', 'developers+ynr-prod@democracyclub.org.uk')
 )
 
+SITE_WIDE_MESSAGES = [
+    {
+        'message': """
+            Election data parties! Join us on the 10th of April in London,
+            Birmingham or Manchester for one of our famous SOPN parties!
+        """,
+        'show_until': "2018-04-10T18:00",
+        'url': "https://democracyclub.org.uk/blog/2018/03/29/election-data-parties/"
+    }
+]
+
+
+
 # **** Other settings that might be useful to change locally
 
 ALLOWED_HOSTS = ['*']
