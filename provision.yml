@@ -5,7 +5,6 @@
     - provision
     - harden
     - opencv
-    - elasticsearch
     - certbot
     - users
     # - { role: backup_ynr, when: "deploy_env == 'production'" }
