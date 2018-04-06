@@ -25,6 +25,9 @@ ADMINS = (
     ('YNR Prod Developers', 'developers+ynr-prod@democracyclub.org.uk')
 )
 
+HAYSTACK_SIGNAL_PROCESSOR = 'celery_haystack.signals.CelerySignalProcessor'
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+
 SITE_WIDE_MESSAGES = [
     {
         'message': """
