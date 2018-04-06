@@ -26,6 +26,15 @@ ADMINS = (
 )
 
 HAYSTACK_SIGNAL_PROCESSOR = 'celery_haystack.signals.CelerySignalProcessor'
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
+        'URL': '{{ AWS_EX_URL }}',
+        'INDEX_NAME': 'ynr_prod',
+    },
+}
+
 CELERY_BROKER_URL = "redis://localhost:6379/0"
 
 SITE_WIDE_MESSAGES = [
