@@ -10,7 +10,8 @@
     - common
   tasks:
 
-  - cronvar:
+  - name: Set up the mailto
+    cronvar:
       name: MAILTO
       value: "{{ cron_email }}"
       user: "{{ project_name }}"
