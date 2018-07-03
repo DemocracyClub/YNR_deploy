@@ -5,7 +5,6 @@
     - provision
     - harden
     - opencv
-    - certbot
     - users
     # - { role: backup_ynr, when: "deploy_env == 'production'" }
     # - { role: restore_from_ynr_backup, when: "deploy_env == 'staging'" }

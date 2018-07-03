@@ -9,19 +9,6 @@
     cache_valid_time: 43200
   with_items: "{{ system_packages }}"
 
-- name: Install postgres
-  apt:
-    pkg: "{{ item }}"
-    state: installed
-    update-cache: yes
-    cache_valid_time: 43200
-  with_items:
-    - "postgresql-{{postgresql_version}}"
-    - "postgresql-client-{{postgresql_version}}"
-    - "postgresql-contrib-{{postgresql_version}}"
-
-
-
 - name: Upgrade all packages
   apt:
     upgrade: safe
@@ -81,16 +68,11 @@
     name: "psycopg2"
     executable: "pip2"
 
-- stat: path=/etc/letsencrypt/live/{{ domain }}/privkey.pem
-  register: cert
-
 - name: Install output on error
   template:
     src: files/scripts/output-on-error
     dest: /usr/local/bin/output-on-error
     mode: 0777
-
-
 
 - name: Install htpasswd file
   template:
@@ -98,34 +80,14 @@
     dest: "{{ project_root }}/.htpasswd"
   notify: restart nginx
 
-- name: Install secure nginx configuration file.
+- name: Install nginx configuration file.
   template: src=files/conf/nginx.conf dest=/etc/nginx/sites-enabled/{{ project_name }}
   notify: restart nginx
-  when: cert.stat.exists == True
-
-- name: Install INSECURE nginx configuration file.
-  template: src=files/conf/nginx.conf dest=/etc/nginx/sites-enabled/{{ project_name }}
-  notify: restart nginx
-  when: cert.stat.exists == False
-
-- debug:
-    msg: "WARNING, INSECURE nginx. You'll need to run certbot"
   when: cert.stat.exists == False
 
 - name: Install nginx mime.types
   template: src=files/conf/mime.types dest=/etc/nginx/mime.types
   notify: "restart nginx"
-
-- name: Install postgres_hba configuration file.
-  template: src=files/conf/pg_hba.conf dest=/etc/postgresql/{{postgresql_version}}/main/pg_hba.conf
-  notify: "restart postgres"
-
-- name: Install upstart init scripts.
-  template:
-    src: files/upstart/{{ item }}.conf
-    dest: /etc/init/{{ project_name }}_{{ item }}.conf
-  with_items: "{{ initfiles }}"
-  when: ansible_distribution_version == "14.04"
 
 - name: Install systemd init scripts.
   template:
@@ -136,28 +98,3 @@
   notify:
     - reload systemd
     - "restart web frontend"
-
-- name: Create DB user.
-  postgresql_user:
-    name: "{{project_name}}"
-    role_attr_flags: "CREATEDB,SUPERUSER"
-
-- name: Create database.
-  postgresql_db:
-    name: "{{project_name}}"
-
-
-
-#   - name: Set up the CSV creation cron
-#     cron: name="create {{project_name}} CSVs" minute="30" hour="04,19" job="{{ project_root }}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk {{ project_root }}-data/media_root/candidates" user={{project_name}}
-#
-#   - name: Set up the ImageExtra check cron
-#     cron: name="create {{project_name}} ImageExtra check" minute="*/15" job="echo 'select i.id from images_image i left outer join candidates_imageextra ie on ie.base_id = i.id where ie.id IS NULL order by i.id;' | psql -q -t ynr | sed '/^$/d'" user={{project_name}}
-# #
-# #
-# handlers:
-# - include: handlers.yml
-# #
-# - include: deploy.yml
-
-

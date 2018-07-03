@@ -25,7 +25,6 @@
       minute: "15,45"
       job: "nice -n 19 ionice -c 3 /usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk {{project_root}}/media_root/candidates"
 
-
   - cron:
       name: "For election night, generate the 2017 GE CSV file more frequently"
       minute: "*/5"
