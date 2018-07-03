@@ -46,12 +46,6 @@
     when: deploy_env == "production"
 
   - cron:
-      name: "Backup images"
-      minute: "45"
-      job: "/usr/local/bin/output-on-error {{project_root}}/backup_images.sh > /dev/null"
-    when: deploy_env == "production"
-
-  - cron:
       name: "Import elections from EE"
       minute: "06"
       job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py uk_create_elections_from_every_election"
