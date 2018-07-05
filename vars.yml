@@ -2,14 +2,14 @@
 app_name: ynr
 branch: master
 django_media_path: ynr
-django_media_root: /var/www/ynr-data/ynr/media_root
+django_media_root: /var/www/ynr/media_root
 initfiles:
   - gunicorn
 long_term_backup_bucket: dc-ynr-long-term-backups
 project_name: ynr
 project_repo: https://github.com/DemocracyClub/yournextrepresentative.git
-project_root: /var/www/ynr-data/ynr
-download_dir: /var/www/ynr-data/downloads/
+project_root: /var/www/ynr
+download_dir: /var/www/ynr/downloads/
 opencv_version: 3.2.0
 cron_email: ynr@democracyclub.org.uk
 python_packages:
