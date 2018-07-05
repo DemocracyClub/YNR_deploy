@@ -83,7 +83,11 @@
 - name: Install nginx configuration file.
   template: src=files/conf/nginx.conf dest=/etc/nginx/sites-enabled/{{ project_name }}
   notify: restart nginx
-  when: cert.stat.exists == False
+
+- name: Remove default nginx config
+  file:
+    state: absent
+    path: /etc/nginx/sites-enabled/default
 
 - name: Install nginx mime.types
   template: src=files/conf/mime.types dest=/etc/nginx/mime.types
