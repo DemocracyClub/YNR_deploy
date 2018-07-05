@@ -60,13 +60,13 @@
   pip:
     name: "gunicorn"
     virtualenv: "{{ project_root }}/env/"
-    virtualenv_python: "python2.7"
+    virtualenv_python: "python3.5"
   become_user: "{{ project_name }}"
 
 - name: Install python2 psycopg2
   pip:
     name: "psycopg2"
-    executable: "pip2"
+    executable: "pip3"
 
 - name: Install output on error
   template:

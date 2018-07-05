@@ -41,11 +41,11 @@ system_packages:
   - opencv-data
   - postfix
   - postgis
-  - python-dev
-  - python-pip
-  - python-psycopg2
-  - python-setuptools
-  - python-virtualenv
+  - python3-dev
+  - python3-pip
+  - python3-psycopg2
+  - python3-setuptools
+  - python3-virtualenv
   - redis-server
   - s3cmd
   - yui-compressor
