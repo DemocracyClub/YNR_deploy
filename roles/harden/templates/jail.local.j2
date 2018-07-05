@@ -9,7 +9,7 @@ maxretry = 4
 mta = sendmail
 
 destemail = developers@democracyclub.org.uk
-sendername = "{{project_name}} ({{ deploy_env }}) Fail2BanAlerts"
+sendername = "{{project_name}} ({{ deploy_env|default('prod') }}) Fail2BanAlerts"
 action = %(action_mw)s
 
 #

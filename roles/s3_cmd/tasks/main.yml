@@ -1,0 +1,14 @@
+---
+- name: install s3cmd
+  apt:
+    pkg: s3cmd
+    state: installed
+  tags: package
+
+- name: configure s3cmd
+  sudo: true
+  template: >
+    src=s3cmd.conf
+    dest={{project_root}}/home/.s3cfg
+
+

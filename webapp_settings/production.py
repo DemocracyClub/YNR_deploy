@@ -26,6 +26,15 @@ ADMINS = (
 )
 
 HAYSTACK_SIGNAL_PROCESSOR = 'celery_haystack.signals.CelerySignalProcessor'
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
+        'URL': '{{ AWS_EX_URL }}',
+        'INDEX_NAME': 'ynr_prod',
+    },
+}
+
 CELERY_BROKER_URL = "redis://localhost:6379/0"
 
 SITE_WIDE_MESSAGES = [
@@ -73,3 +82,28 @@ RAVEN_CONFIG = {
 }
 
 RUNNING_TESTS = False
+
+
+# This should be one of:
+# ELECTION_STATS
+# SOPN_TRACKER
+# RESULTS_PROGRESS
+# BY_ELECTIONS
+FRONT_PAGE_CTA = 'BY_ELECTIONS'
+SOPN_TRACKER_INFO = {
+    # Will be used as "{} nomination papers (SOPNs)"
+    # and "Help us find all the nomination papers for the {}s"
+    # Note the trailing 's' is added in the latter case
+    'election_name': "Local elections in England",
+    'election_date': '2018-05-03',
+}
+
+
+STATICFILES_STORAGE = 'ynr.s3_storage.StaticStorage'
+DEFAULT_FILE_STORAGE= 'ynr.s3_storage.MediaStorage'
+AWS_S3_REGION_NAME = 'eu-west-2'
+AWS_STORAGE_BUCKET_NAME = "static-candidates.democracyclub.org.uk"
+AWS_S3_CUSTOM_DOMAIN = "static-candidates.democracyclub.org.uk"
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'media'
+
