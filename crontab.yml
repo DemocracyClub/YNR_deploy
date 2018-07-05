@@ -17,27 +17,9 @@
       user: "{{ project_name }}"
 
   - cron:
-      name: "Check images"
-      minute: "*/15"
-      job: "echo 'select i.id from images_image i left outer join candidates_imageextra ie on ie.base_id = i.id where ie.id IS NULL order by i.id;' | psql -q -t ynr | sed '/^$/d'"
-
-  - cron:
       name: "Create CSVs"
       minute: "15,45"
       job: "nice -n 19 ionice -c 3 /usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk {{project_root}}/media_root/candidates"
-
-  - cron:
-      name: "For election night, generate the 2017 GE CSV file more frequently"
-      minute: "*/5"
-      job: "nice -n 19 ionice -c 3 /usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk --election parl.2017-06-08 {{project_root}}/media_root/candidates"
-      disabled: yes
-
-
-  - cron:
-      name: "Create nightly CSVs for archival purposes"
-      minute: "30"
-      hour: "00"
-      job: "nice -n 19 ionice -c 3 /usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk --election parl.2017-06-08 {{project_root}}/media_root/csv-archives/candidates-`date +\\%Y\\%m\\%d`"
 
   - cron:
       name: "Detect faces"
