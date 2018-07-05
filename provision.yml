@@ -2,8 +2,8 @@
 - hosts: servers
   roles:
     - common
-    - s3_cmd
     - provision
+    - s3_cmd
     - harden
     - opencv
     - users
