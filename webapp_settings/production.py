@@ -114,6 +114,7 @@ CSRF_TRUSTED_ORIGINS = [
 USE_X_FORWARDED_HOST = True
 
 
+EMAIL_PORT = 587
 EMAIL_HOST = 'email-smtp.eu-west-1.amazonaws.com'
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = '{{smtp_username}}'
