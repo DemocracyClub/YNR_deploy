@@ -57,5 +57,5 @@
       name: "Build static person pages"
       minute: "10"
       hour: 1 # For non-election times
-      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_cache_api_to_directory {{django_media_root}}/cached-api https://candidates.democracyclub.org.uk/media/cached-api --prune"
+      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_cache_api_to_directory --url-prefix https://static-candidates.democracyclub.org.uk/media/cached-api --prune"
     when: deploy_env == "production"
