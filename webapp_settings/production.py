@@ -107,3 +107,6 @@ AWS_S3_CUSTOM_DOMAIN = "static-candidates.democracyclub.org.uk"
 STATICFILES_LOCATION = 'static'
 MEDIAFILES_LOCATION = 'media'
 
+CSRF_TRUSTED_ORIGINS = [
+    "{{ domain }}",
+]
