@@ -110,3 +110,5 @@ MEDIAFILES_LOCATION = 'media'
 CSRF_TRUSTED_ORIGINS = [
     "{{ domain }}",
 ]
+
+USE_X_FORWARDED_HOST = True
