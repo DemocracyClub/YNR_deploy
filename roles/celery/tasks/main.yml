@@ -5,12 +5,20 @@
     home: /opt/celery/
     state: present
 
+- name: Create directories for celery
+  file: name={{ item }} state=directory
+  with_items:
+    - /etc/conf.d/
+    - /var/run/celery/
+    - /var/log/celery/
+
 - name: Set up the celery config file
   template:
     src: celery.conf
-    dest: /opt/celery/celery.conf
+    dest: /etc/conf.d/celery
   when: ansible_distribution_version == "16.04"
   notify:
+    - reload systemd
     - restart celery
 
 - name: Install celery systemd init scripts.
@@ -20,3 +28,4 @@
   when: ansible_distribution_version == "16.04"
   notify:
     - reload systemd
+    - restart celery
