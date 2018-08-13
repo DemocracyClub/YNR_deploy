@@ -37,7 +37,7 @@
       name: "Update Twitter usernames"
       minute: "06"
       hour: "01"
-      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_update_twitter_usernames"
+      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py twitterbot_update_usernames"
     when: deploy_env == "production"
 
   - cron:
@@ -50,7 +50,7 @@
       name: "Add Twitter images to image queue"
       minute: "06"
       hour: "03"
-      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_add_twitter_images_to_queue"
+      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py twitterbot_add_images_to_queue"
     when: deploy_env == "production"
 
   - cron:
