@@ -44,7 +44,7 @@
       name: "Update parties from EC"
       minute: "06"
       hour: "02"
-      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py uk_update_parties_from_ec_data"
+      job: "output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py parties_import_from_ec"
 
   - cron:
       name: "Add Twitter images to image queue"
