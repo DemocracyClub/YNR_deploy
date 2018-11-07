@@ -19,25 +19,25 @@
   - cron:
       name: "Create CSVs"
       minute: "15,45"
-      job: "nice -n 19 ionice -c 3 /usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk"
+      job: "nice -n 19 ionice -c 3 output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk"
 
   - cron:
       name: "Detect faces"
       minute: "30,04,19"
-      job: "nice -n 19 ionice -c 3 /usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py moderation_queue_detect_faces_in_queued_images"
+      job: "nice -n 19 ionice -c 3 output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py moderation_queue_detect_faces_in_queued_images"
       disabled: no
     when: deploy_env == "production"
 
   - cron:
       name: "Import elections from EE"
       minute: "06"
-      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py uk_create_elections_from_every_election"
+      job: "output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py uk_create_elections_from_every_election"
 
   - cron:
       name: "Update Twitter usernames"
       minute: "06"
       hour: "01"
-      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py twitterbot_update_usernames"
+      job: "output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py twitterbot_update_usernames"
     when: deploy_env == "production"
 
   - cron:
@@ -50,12 +50,12 @@
       name: "Add Twitter images to image queue"
       minute: "06"
       hour: "03"
-      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py twitterbot_add_images_to_queue"
+      job: "output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py twitterbot_add_images_to_queue"
     when: deploy_env == "production"
 
   - cron:
       name: "Build static person pages"
       minute: "10"
       hour: 1 # For non-election times
-      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_cache_api_to_directory --url-prefix https://static-candidates.democracyclub.org.uk/media/cached-api --prune"
+      job: "output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_cache_api_to_directory --url-prefix https://static-candidates.democracyclub.org.uk/media/cached-api --prune"
     when: deploy_env == "production"

@@ -71,7 +71,7 @@
 - name: Install output on error
   template:
     src: files/scripts/output-on-error
-    dest: /usr/local/bin/output-on-error
+    dest: /usr/bin/output-on-error
     mode: 0777
 
 - name: Install htpasswd file
