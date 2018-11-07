@@ -6,7 +6,7 @@
     state: present
 
 - name: Create directories for celery
-  file: name={{ item }} state=directory
+  file: name={{ item }} state=directory owner={{ project_name }}
   with_items:
     - /etc/conf.d/
     - /var/run/celery/
