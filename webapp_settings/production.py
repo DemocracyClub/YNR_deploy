@@ -119,3 +119,15 @@ EMAIL_HOST = 'email-smtp.eu-west-1.amazonaws.com'
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = '{{smtp_username}}'
 EMAIL_HOST_PASSWORD = '{{smtp_password}}'
+
+
+#  Send errors to sentry by default
+LOGGING['handlers']['sentry'] = {
+    'level': 'WARNING',
+    'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+}
+LOGGING["loggers"]["account_adapter"]: {
+    'level': 'WARNING',
+    'handlers': ['sentry'],
+    'propagate': False,
+}
