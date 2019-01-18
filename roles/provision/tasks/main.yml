@@ -84,6 +84,10 @@
   template: src=files/conf/nginx.conf dest=/etc/nginx/sites-enabled/{{ project_name }}
   notify: restart nginx
 
+- name: Install nginx refirects file.
+  template: src=files/conf/nginx_redirects.conf dest=/etc/nginx/{{ project_name }}_redirects.conf
+  notify: restart nginx
+
 - name: Remove default nginx config
   file:
     state: absent
