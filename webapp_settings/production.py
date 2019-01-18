@@ -98,6 +98,10 @@ SOPN_TRACKER_INFO = {
     'election_date': '2018-05-03',
 }
 
+SCHEDULED_ELECTION_DATES = [
+    "2019-05-02"
+]
+
 
 STATICFILES_STORAGE = 'ynr.s3_storage.StaticStorage'
 DEFAULT_FILE_STORAGE= 'ynr.s3_storage.MediaStorage'
