@@ -135,3 +135,6 @@ LOGGING["loggers"]["account_adapter"]: {
     'handlers': ['sentry'],
     'propagate': False,
 }
+
+
+SLACK_TOKEN = "{{slack_token}}"
