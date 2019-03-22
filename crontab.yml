@@ -59,3 +59,8 @@
       hour: 1 # For non-election times
       job: "output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_cache_api_to_directory --url-prefix https://static-candidates.democracyclub.org.uk/media/cached-api --prune"
     when: deploy_env == "production"
+  - cron:
+      name: "Update current candidates for party"
+      minute: "10"
+      hour: 2 # For non-election times
+      job: "output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py parties_update_current_candidates"
