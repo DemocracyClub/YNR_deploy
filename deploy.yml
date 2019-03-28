@@ -58,13 +58,6 @@
         - restart web frontend
       when: (application_git_repo.changed) or (application_config.changed)
 
-    - name: Upload banner.
-      template:
-        src: "webapp_settings/banner/{{ deploy_env }}.html"
-        dest: "{{ project_root }}/code/ynr/templates/banner.html"
-      notify:
-        - restart web frontend
-
     - name: Install rsyslog configuration files
       template:
         src: files/conf/rsyslog.conf

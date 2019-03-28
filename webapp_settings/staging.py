@@ -1,6 +1,5 @@
 # Only set this to True in development environments
 DEBUG = True
-SHOW_BANNER = True
 
 # Set this to a long random string and keep it secret
 # This is a handy tool:

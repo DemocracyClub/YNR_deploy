@@ -1,6 +1,5 @@
 # Only set this to True in development environments
 DEBUG = False
-SHOW_BANNER = False
 CAN_EDIT_ELECTIONS = False
 
 # Set this to a long random string and keep it secret
