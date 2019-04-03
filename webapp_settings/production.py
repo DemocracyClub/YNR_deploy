@@ -88,13 +88,13 @@ RUNNING_TESTS = False
 # SOPN_TRACKER
 # RESULTS_PROGRESS
 # BY_ELECTIONS
-FRONT_PAGE_CTA = 'BY_ELECTIONS'
+FRONT_PAGE_CTA = 'SOPN_TRACKER'
 SOPN_TRACKER_INFO = {
     # Will be used as "{} nomination papers (SOPNs)"
     # and "Help us find all the nomination papers for the {}s"
     # Note the trailing 's' is added in the latter case
-    'election_name': "Local elections in England",
-    'election_date': '2018-05-03',
+    'election_name': "2019 Local election",
+     'election_date': '2019-05-02',
 }
 
 SCHEDULED_ELECTION_DATES = [
