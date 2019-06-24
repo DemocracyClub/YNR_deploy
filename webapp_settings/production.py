@@ -1,4 +1,5 @@
 # Only set this to True in development environments
+import certifi
 DEBUG = False
 CAN_EDIT_ELECTIONS = False
 
@@ -31,6 +32,11 @@ HAYSTACK_CONNECTIONS = {
         'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
         'URL': '{{ AWS_EX_URL }}',
         'INDEX_NAME': 'ynr_prod',
+        'KWARGS': {
+            # pass CA cert info to urllib3 to be able to verify connection certificates
+            'verify_certs': True,
+            'ca_certs': certifi.where()
+        }
     },
 }
 
