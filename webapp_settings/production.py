@@ -113,6 +113,7 @@ DEFAULT_FILE_STORAGE= 'ynr.s3_storage.MediaStorage'
 AWS_S3_REGION_NAME = 'eu-west-2'
 AWS_STORAGE_BUCKET_NAME = "static-candidates.democracyclub.org.uk"
 AWS_S3_CUSTOM_DOMAIN = "static-candidates.democracyclub.org.uk"
+AWS_S3_FILE_OVERWRITE = False
 STATICFILES_LOCATION = 'static'
 MEDIAFILES_LOCATION = 'media'
 
