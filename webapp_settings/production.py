@@ -25,21 +25,6 @@ ADMINS = (
     ('YNR Prod Developers', 'developers+ynr-prod@democracyclub.org.uk')
 )
 
-HAYSTACK_SIGNAL_PROCESSOR = 'celery_haystack.signals.CelerySignalProcessor'
-
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
-        'URL': '{{ AWS_EX_URL }}',
-        'INDEX_NAME': 'ynr_prod',
-        'KWARGS': {
-            # pass CA cert info to urllib3 to be able to verify connection certificates
-            'verify_certs': True,
-            'ca_certs': certifi.where()
-        }
-    },
-}
-
 CELERY_BROKER_URL = "redis://localhost:6379/0"
 
 SITE_WIDE_MESSAGES = [
