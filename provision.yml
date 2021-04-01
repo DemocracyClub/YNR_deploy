@@ -5,20 +5,12 @@
     - provision
     - s3_cmd
     - harden
-    - opencv
     - users
     # - { role: backup_ynr, when: "deploy_env == 'production'" }
     # - { role: restore_from_ynr_backup, when: "deploy_env == 'staging'" }
   vars_files:
     - vars.yml
     - vault.yml
-  gather_facts: false
+  gather_facts: true
   become: true
-  pre_tasks:
-    - name: Install python for Ansible
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-      register: output
-      changed_when: 'output.stdout != ""'
-    - name: setup
-      setup: filter=ansible_*
-- include: deploy.yml
+- import_playbook: deploy.yml

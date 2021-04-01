@@ -1,4 +1,5 @@
 # Only set this to True in development environments
+from .base import *
 import certifi
 DEBUG = False
 CAN_EDIT_ELECTIONS = False
@@ -8,7 +9,6 @@ CAN_EDIT_ELECTIONS = False
 # https://www.miniwebtool.com/django-secret-key-generator/
 SECRET_KEY = "{{ production_django_secret_key }}"
 MEDIA_ROOT = "{{ django_media_root }}"
-STATICFILES_DIRS = ()
 
 DATABASES = {
     'default': {
@@ -79,7 +79,7 @@ RUNNING_TESTS = False
 # SOPN_TRACKER
 # RESULTS_PROGRESS
 # BY_ELECTIONS
-FRONT_PAGE_CTA = 'SOPN_TRACKER'
+FRONT_PAGE_CTA = 'BY_ELECTIONS'
 SOPN_TRACKER_INFO = {
     # Will be used as "{} nomination papers (SOPNs)"
     # and "Help us find all the nomination papers for the {}s"
@@ -89,17 +89,20 @@ SOPN_TRACKER_INFO = {
 }
 
 SCHEDULED_ELECTION_DATES = [
-    "2019-05-02"
+    "2021-05-06"
 ]
 
 
-STATICFILES_STORAGE = 'ynr.s3_storage.StaticStorage'
-DEFAULT_FILE_STORAGE= 'ynr.s3_storage.MediaStorage'
+STATICFILES_STORAGE = 'ynr.storages.StaticStorage'
+DEFAULT_FILE_STORAGE= 'ynr.storages.MediaStorage'
 AWS_S3_REGION_NAME = 'eu-west-2'
 AWS_STORAGE_BUCKET_NAME = "static-candidates.democracyclub.org.uk"
 AWS_S3_CUSTOM_DOMAIN = "static-candidates.democracyclub.org.uk"
 STATICFILES_LOCATION = 'static'
 MEDIAFILES_LOCATION = 'media'
+AWS_DEFAULT_ACL = "public-read"
+AWS_BUCKET_ACL = AWS_DEFAULT_ACL
+
 
 CSRF_TRUSTED_ORIGINS = [
     "{{ domain }}",
@@ -128,3 +131,12 @@ LOGGING["loggers"]["account_adapter"]: {
 
 
 SLACK_TOKEN = "{{slack_token}}"
+
+CELERY_IMPORTS = ["ynr.apps.sopn_parsing.tasks",]
+ALWAYS_ALLOW_RESULT_RECORDING = True
+
+FF_COOKIE_PATH = "/var/www/ynr/cookies.sqlite"
+FACEBOOK_TOKEN = "EAAHFkAGrkL8BAEDkR3PMZBYBhNKTcxrejQQm3cpfkpApT9BhenJmqkzgTeCYDNSkY2nZBDoPo1ztaOKsf8EKCHpsel8dasjJxua1dS0XIlZBBlIgpovpwY6S1hGXStM6tlK78OF6hr4owcZAZAcZA3WS2dHG6CGNIEuEEqFpLCHkB9WaT56HWt"
+
+
+EDITS_ALLOWED = True

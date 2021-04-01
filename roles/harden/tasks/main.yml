@@ -1,7 +1,7 @@
 ---
 # fail2ban
 - name: install fail2ban
-  apt: pkg=fail2ban state=installed
+  apt: pkg=fail2ban state=latest
   tags: package
 
 - name: configure fail2ban local jails
@@ -15,7 +15,7 @@
 
 # UFW
 - name: install UFW
-  apt: pkg=ufw state=installed
+  apt: pkg=ufw state=latest
   tags: package
 
 - ufw:

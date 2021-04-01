@@ -8,15 +8,18 @@
   become: true
 
 - name: restart web frontend
-  action: service name={{ project_name }}_gunicorn state=restarted
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: "{{ project_name }}_gunicorn"
   become: true
   become_user: root
 
 - name: reload systemd
-  sudo: yes
+  become: true
   command: systemctl daemon-reload
 
 - name: restart rsyslog
   service: name=rsyslog state=restarted
-  become: True
+  become: true
   become_user: root
