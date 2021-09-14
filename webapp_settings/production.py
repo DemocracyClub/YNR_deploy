@@ -20,10 +20,10 @@ DATABASES = {
     },
 }
 
-# A tuple of tuples containing (Full name, email address)
-ADMINS = (
+# A list of tuples containing (Full name, email address)
+ADMINS = [
     ('YNR Prod Developers', 'developers+ynr-prod@democracyclub.org.uk')
-)
+]
 
 CELERY_BROKER_URL = "redis://localhost:6379/0"
 
