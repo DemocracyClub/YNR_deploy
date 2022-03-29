@@ -123,18 +123,17 @@ LOGGING['handlers']['sentry'] = {
     'level': 'WARNING',
     'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
 }
-LOGGING["loggers"]["account_adapter"]: {
-    'level': 'WARNING',
-    'handlers': ['sentry'],
-    'propagate': False,
-}
+# LOGGING["loggers"]["account_adapter"]: {
+#     'level': 'WARNING',
+#     'handlers': ['sentry'],
+#     'propagate': False,
+# }
 
 
 SLACK_TOKEN = "{{slack_token}}"
 
 CELERY_IMPORTS = ["ynr.apps.sopn_parsing.tasks",]
 ALWAYS_ALLOW_RESULT_RECORDING = True
-
 FF_COOKIE_PATH = "/var/www/ynr/cookies.sqlite"
 FACEBOOK_TOKEN = "EAAHFkAGrkL8BAEDkR3PMZBYBhNKTcxrejQQm3cpfkpApT9BhenJmqkzgTeCYDNSkY2nZBDoPo1ztaOKsf8EKCHpsel8dasjJxua1dS0XIlZBBlIgpovpwY6S1hGXStM6tlK78OF6hr4owcZAZAcZA3WS2dHG6CGNIEuEEqFpLCHkB9WaT56HWt"
 

@@ -1,11 +1,12 @@
 ---
-- hosts: servers
+- hosts: ynr
   vars_files:
     - vars.yml
     - vault.yml
   gather_facts: true
   become: true
   become_user: "{{ project_name }}"
+  remote_user: ubuntu
   roles:
     - common
   tasks:
@@ -13,7 +14,7 @@
       git:
         repo: "{{ project_repo }}"
         dest: "{{ project_root }}/code/"
-        version: "{{ app_branch }}"
+        version: "master"
         accept_hostkey: true
       notify:
         - restart web frontend
@@ -21,7 +22,7 @@
 
     - name: Upload configuration.
       template:
-        src: "webapp_settings/{{ deploy_env }}.py"
+        src: "webapp_settings/production.py"
         dest: "{{ project_root }}/code/ynr/settings/local.py"
       notify:
         - restart web frontend
@@ -59,14 +60,6 @@
         app_path: "{{ project_root }}/code"
         virtualenv: "{{ project_root }}/env"
       when: (application_git_repo.changed) or (application_config.changed)
-
-    - name: Install rsyslog configuration files
-      template:
-        src: files/conf/rsyslog.conf
-        dest: /etc/rsyslog.conf
-      become_user: root
-      notify:
-        - restart rsyslog
 
     - name: Check django is working
       django_manage:
