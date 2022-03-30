@@ -1,4 +1,6 @@
 # Only set this to True in development environments
+from datetime import date
+
 from .base import *
 import certifi
 DEBUG = False
@@ -79,17 +81,20 @@ RUNNING_TESTS = False
 # SOPN_TRACKER
 # RESULTS_PROGRESS
 # BY_ELECTIONS
-FRONT_PAGE_CTA = 'BY_ELECTIONS'
-SOPN_TRACKER_INFO = {
-    # Will be used as "{} nomination papers (SOPNs)"
-    # and "Help us find all the nomination papers for the {}s"
-    # Note the trailing 's' is added in the latter case
-    'election_name': "2019 Local election",
-     'election_date': '2019-05-02',
-}
+FRONT_PAGE_CTA = 'SOPN_TRACKER'
+SOPN_TRACKER_INFO = {}
+SOPN_TRACKER_INFO["election_date"] = "2022-05-05"
+SOPN_TRACKER_INFO["election_name"] = "May 2022 local elections"
+SOPN_SHEET_URL = "https://docs.google.com/spreadsheets/d/1eyYvkHqvpmowxvpJ3gALfDtPXfJF7nqvMt1ttxLa9fM/edit#gid=0"
+SOPN_DATES = [
+    ("Scotland", date(year=2022, month=3, day=30)),
+    ("England and Wales", date(year=2022, month=4, day=6)),
+    ("Northern Ireland", date(year=2022, month=4, day=8)),
+]
+
 
 SCHEDULED_ELECTION_DATES = [
-    "2021-05-06"
+    "2022-05-06"
 ]
 
 
