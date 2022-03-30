@@ -60,6 +60,7 @@
         app_path: "{{ project_root }}/code"
         virtualenv: "{{ project_root }}/env"
       when: (application_git_repo.changed) or (application_config.changed)
+      run_once: true
 
     - name: Check django is working
       django_manage:
