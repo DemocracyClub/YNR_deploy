@@ -19,8 +19,8 @@
   - cron:
       name: "Create CSVs"
       minute: "15"
-      job: "output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk"
-      disabled: yes
+      job: "nice output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk"
+      disabled: no
 
   - cron:
       name: "Detect faces"
